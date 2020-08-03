@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h1{text-align: center;}
+            li{list-style: none; padding-left: 5px;}
+            #cotnainer{width:600px; margin: 80px auto; overflow: hidden; border:1px #666 dashed; min-height: 200px; padding: 15px;}
+        </style>
+
+        <title>
+            My Movies
+        </title>
+
+        <script>
+            function getDataFromJson(){
+                var xmlhttp;
+                if(windows.XMLHttpRequest){
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else{
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange=function(){
+                    if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                        jsondata = JSON.parse(xmlhttp.responseText);
+                        var movies = jsondata.movies;
+                        var output = '<form>';
+                        output+='<select id=:"movie_select" onchange="movieSelect()">';
+                        for(i=0; i<movies.length; i++){
+                            output+='<option value="'+i+'">'+movies[i].type+'</option>'
+                        }
+                        output+="</sekect>";
+                        output+='</form>';
+                        document.getElementById('movie_title').innerHTML=output;
+                    }
+                    xmlhttp.open("GET", "movies.json", true);
+                    xmlhttp.send();
+                } 
+            }
+
+            function movieSelect(){
+                var selectbox = getElementById('movie_select');
+                var movieIndex = selectBox.options[selectBox.selectedIndex].value;
+                getMovieInfo(movieIndex);
+            }
+            function getMovieInfo(i){
+                var xmlhttp;
+                if(windows.XMLHttpRequest){
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else{
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange=function(){
+                    if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                        jsondata = JSON.parse(xmlhttp.responseText);
+                        var movies = jsondata.movies;
+                        var output = '<form>';
+                        var output ='';
+                        output+='<li>Year: '+movies[i].year+'</li>'
+                        output+='<li>Genre: '+movies[i].genre+'</li>'
+                        output+='<li>Director: '+movies[i].director+'</li>'
+
+                        document.getElementById('movie_info').innerHTML=output;
+                    }
+                    xmlhttp.open("GET", "movies.json", true);
+                    xmlhttp.send();
+                }
+
+            }
+        </script>
+
+    </head>
+    
+    <body onload="=getMovieTitles()"">
+        <div id="container">
+            <h1>My favourite movies</h1>
+            <div id="movie title"></div>
+            <br />
+            <div id="movie info"></div>
+        </div>
+
+    </body>
+</html>
