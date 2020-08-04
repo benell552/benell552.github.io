@@ -28,15 +28,16 @@
                         output+='<select id=:"movie_select" onchange="movieSelect()">';
                         for(i=0; i<movies.length; i++){
                             output+='<option value="'+i+'">'+movies[i].type+'</option>'
-                        }
+                            }
                         output+="</sekect>";
                         output+='</form>';
                         document.getElementById('movie_title').innerHTML=output;
                     }
+                }
                     xmlhttp.open("GET", "movies.json", true);
                     xmlhttp.send();
                 } 
-            }
+            
 
             function movieSelect(){
                 var selectbox = getElementById('movie_select');
