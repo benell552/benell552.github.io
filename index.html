@@ -27,48 +27,18 @@
                         var output = '<form>';
                         output+='<select id=:"movie_select" onchange="movieSelect()">';
                         for(i=0; i<movies.length; i++){
-                            output+='<option value="'+i+'">'+movies[i].type+'</option>'
+                            output+='<option value="'+i+'">'+movies[i].type+'</option>';
                             }
-                        output+="</sekect>";
+                        output+="</select>";
                         output+='</form>';
                         document.getElementById('movie_title').innerHTML=output;
                     }
                 }
-                    xmlhttp.open("GET", "movies.json", true);
-                    xmlhttp.send();
+                xmlhttp.open("GET", "movies.json", true);
+                xmlhttp.send();
                 } 
             
 
-            function movieSelect(){
-                var selectbox = getElementById('movie_select');
-                var movieIndex = selectBox.options[selectBox.selectedIndex].value;
-                getMovieInfo(movieIndex);
-            }
-            function getMovieInfo(i){
-                var xmlhttp;
-                if(windows.XMLHttpRequest){
-                    xmlhttp=new XMLHttpRequest();
-                }
-                else{
-                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange=function(){
-                    if(xmlhttp.readyState==4 && xmlhttp.status==200){
-                        jsondata = JSON.parse(xmlhttp.responseText);
-                        var movies = jsondata.movies;
-                        var output = '<form>';
-                        var output ='';
-                        output+='<li>Year: '+movies[i].year+'</li>'
-                        output+='<li>Genre: '+movies[i].genre+'</li>'
-                        output+='<li>Director: '+movies[i].director+'</li>'
-
-                        document.getElementById('movie_info').innerHTML=output;
-                    }
-                    xmlhttp.open("GET", "movies.json", true);
-                    xmlhttp.send();
-                }
-
-            }
         </script>
 
     </head>
