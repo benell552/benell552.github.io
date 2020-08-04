@@ -12,7 +12,7 @@
         </title>
 
         <script>
-            function getDataFromJson(){
+            function getMovieTitles(){
                 var xmlhttp;
                 if(windows.XMLHttpRequest){
                     xmlhttp=new XMLHttpRequest();
@@ -74,8 +74,6 @@
     
     <body onload="=getMovieTitles()"">
         <div id="container">
-            <h1>My favourite movies</h1>
-            <h4>My name Jeff</h4>
             <div id="movie title"></div>
             <br />
             <div id="movie info"></div>
